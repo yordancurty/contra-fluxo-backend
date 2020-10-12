@@ -5,7 +5,7 @@ const uploader = require("../configs/cloudinary.config");
 //const { ObjectId } = require("mongoose").Types;
 
 const Product = require("../models/Product.model");
-
+const User = require("../models/User.model");
 
 //Rotas dos produtos:
 
@@ -25,14 +25,16 @@ router.get("/product", async (req, res) => {
 
 //Create:
 
-router.post("/product", passport.authenticate("jwt", {session: false}), async (req, res) => {
+router.post("/product/:userId", passport.authenticate("jwt", {session: false}), async (req, res) => {
     try{
         
-    const result = await Product.create(req.body);
+    const resultProduct = await Product.create(req.body);
 
-    console.log(result);
+    const resultUser = await User.findOneAndUpdate({_id: req.params.userId}, {$push: {products: resultProduct._id}}, {new: true})
+
+    console.log(resultProduct);
     
-    return res.status(201).json({created: result});
+    return res.status(201).json({created: {resultProduct, resultUser}});
 
     } catch(err){
         return res.status(500).json({error: err})
