@@ -1,0 +1,18 @@
+const {Schema, model} = require("mongoose");
+
+const ProductSchema = new Schema(
+    {
+        title: String,
+        description: String,
+        price: Number,
+        specifications: String,
+        evaluation: String,
+        name: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        artType: { type: String, enum: ["Artes Literárias", "Audiovisual", "Artes Visuais", "Artesanato"] },
+
+    }
+);
+
+module.exports = model("Product", ProductSchema);
+
+//MEDIAS- IMAGENS OU VIDEOS
