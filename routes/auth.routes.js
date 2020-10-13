@@ -70,7 +70,7 @@ router.post("/login", async (req, res, next) => {
               return next(info.message)
           }
 
-          req.login(user, {sessio: false}, async(error) => {
+          req.login(user, {session: false}, async(error) => {
               if(error){
                   return next(error);
               }
@@ -90,6 +90,7 @@ router.post("/login", async (req, res, next) => {
 //Rota privada de usurário:
 
 router.get("/profile", passport.authenticate("jwt", {session: false}), (req, res, next) => {
+    console.log("PROFILE GET FUNCIONAAA")
     res.json({
         user: req.user,
         token: req.query.secret_token,

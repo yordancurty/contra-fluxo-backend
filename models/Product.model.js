@@ -9,7 +9,7 @@ const ProductSchema = new Schema(
         evaluation: String,
         name: [{ type: Schema.Types.ObjectId, ref: "User" }],
         artType: { type: String, enum: ["Artes Literárias", "Audiovisual", "Artes Visuais", "Artesanato"] },
-
+        media: String
     }
 );
 
