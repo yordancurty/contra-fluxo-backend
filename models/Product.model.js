@@ -7,7 +7,7 @@ const ProductSchema = new Schema(
         price: Number,
         specifications: String,
         evaluation: String,
-        name: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        user: { type: Schema.Types.ObjectId, ref: "User" },
         artType: { type: String, enum: ["Artes Literárias", "Audiovisual", "Artes Visuais", "Artesanato"] },
         media: String
     }
