@@ -12,81 +12,91 @@ const User = require("../models/User.model");
 //Read:
 
 router.get("/product", async (req, res) => {
-    try{
+  try {
+    const result = await Product.find().populate("user");
 
-        const result = await Product.find();
-
-        return res.status(200).json(result);
-
-    } catch(err){
-        return res.status(500).json({error: err})
-    }
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
 });
 
 //Create:
 
-router.post("/product/:userId", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    try{
-        
-    const resultProduct = await Product.create(req.body);
+router.post(
+  "/product/:userId",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      req.body.user = req.params.userId;
 
-    const resultUser = await User.findOneAndUpdate({_id: req.params.userId}, {$push: {products: resultProduct._id}}, {new: true})
+      const resultProduct = await Product.create(req.body);
 
-    console.log(resultProduct);
-    
-    return res.status(201).json({created: {resultProduct, resultUser}});
+      const resultUser = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $push: { products: resultProduct._id } },
+        { new: true }
+      );
 
-    } catch(err){
-        return res.status(500).json({error: err})
+      console.log(resultProduct);
+
+      return res.status(201).json({ created: { resultProduct, resultUser } });
+    } catch (err) {
+      return res.status(500).json({ error: err });
     }
-});
-
+  }
+);
 
 //Update:
 
-router.patch("/product/:id", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    try{
+router.patch(
+  "/product/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const { id } = req.params;
 
-    const { id } = req.params;
-    
-    const result = await Product.findOneAndUpdate({_id: id}, req.body, {new: true});
+      const result = await Product.findOneAndUpdate({ _id: id }, req.body, {
+        new: true,
+      });
 
-    console.log(result);
+      console.log(result);
 
-    return res.status(200).json(result);
-
-    } catch(err){
-        return res.status(500).json({error: err});
+      return res.status(200).json(result);
+    } catch (err) {
+      return res.status(500).json({ error: err });
     }
-});
+  }
+);
 
 //Rota upload de arquivo:
 
 router.post("/attachment-upload", uploader.single("attachment"), (req, res) => {
-    if (!req.file){
-        return res.status(500).json({message: "Nenhum arquivo carregado!"});
-    }
+  if (!req.file) {
+    return res.status(500).json({ message: "Nenhum arquivo carregado!" });
+  }
 
-    return res.status(200).json({attachmentUrl: req.file.secure_url})
-})
+  return res.status(200).json({ attachmentUrl: req.file.secure_url });
+});
 
 //Delete:
 
-router.delete("/product/:id", passport.authenticate("jwt", {session: false}), async (req, res) => {
+router.delete(
+  "/product/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
     try {
+      const { id } = req.params;
 
-    const { id } = req.params;
-    
-    const result = await Product.deleteOne({_id: id});
+      const result = await Product.deleteOne({ _id: id });
 
-    console.log(result);
+      console.log(result);
 
-    return res.status(200).json({});
-
-    } catch(err){
-        return res.status(500).json({message: "Internal server error"});
+      return res.status(200).json({});
+    } catch (err) {
+      return res.status(500).json({ message: "Internal server error" });
     }
-});
-
+  }
+);
 
 module.exports = router;
