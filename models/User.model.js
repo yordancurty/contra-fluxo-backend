@@ -34,6 +34,8 @@ const UserSchema = new Schema(
 
         twiter: String,
 
+        youtube: String,
+
     },
 
     { timestamps: true }
