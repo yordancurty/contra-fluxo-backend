@@ -21,7 +21,7 @@ const UserSchema = new Schema(
             required: [true],
           },
 
-        image: {
+          attachmentUrl: {
             type: String,
             default: "",
           },
@@ -32,7 +32,7 @@ const UserSchema = new Schema(
 
         instagram: String,
 
-        twiter: String,
+        twitter: String,
 
         youtube: String,
 
