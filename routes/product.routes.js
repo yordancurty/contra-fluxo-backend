@@ -31,17 +31,11 @@ router.post(
       req.body.user = req.params.userId;
 
       const resultProduct = await Product.create(req.body);
-
-      const resultUser = await User.findOneAndUpdate(
-        { _id: req.params.userId },
-        { $push: { products: resultProduct._id } },
-        { new: true }
-      );
-
-      console.log(resultProduct);
-
-      return res.status(201).json({ created: { resultProduct, resultUser } });
+      
+console.log(req.body)
+      return res.status(201).json({ created: { resultProduct} });
     } catch (err) {
+      console.log(err);
       return res.status(500).json({ error: err });
     }
   }
@@ -71,12 +65,13 @@ router.patch(
 
 //Rota upload de arquivo:
 
-router.post("/attachment-upload", uploader.single("attachment"), (req, res) => {
+router.post("/media-upload", uploader.single("media"), (req, res) => {
   if (!req.file) {
+    console.log("ARQUIVO")
     return res.status(500).json({ message: "Nenhum arquivo carregado!" });
   }
-
-  return res.status(200).json({ attachmentUrl: req.file.secure_url });
+  console.log(req.file);
+  return res.status(200).json({ media: req.file.secure_url });
 });
 
 //Delete:
