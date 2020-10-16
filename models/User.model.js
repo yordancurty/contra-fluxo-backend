@@ -23,7 +23,6 @@ const UserSchema = new Schema(
 
           attachmentUrl: {
             type: String,
-            default: "",
           },
 
         aboutMe: String,

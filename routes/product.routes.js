@@ -25,7 +25,7 @@ router.get("/product", async (req, res) => {
 
 router.post(
   "/product/:userId",
-  /* passport.authenticate("jwt", { session: false }), */
+  passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
       req.body.user = req.params.userId;
@@ -45,7 +45,7 @@ console.log(req.body)
 
 router.patch(
   "/product/:id",
-  /* passport.authenticate("jwt", { session: false }), */
+  passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
       const { id } = req.params;
@@ -78,7 +78,7 @@ router.post("/media-upload", uploader.single("media"), (req, res) => {
 
 router.delete(
   "/product/:id",
-  /* passport.authenticate("jwt", { session: false }), */
+  passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
       const { id } = req.params;
