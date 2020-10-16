@@ -23,6 +23,7 @@ const UserSchema = new Schema(
 
           attachmentUrl: {
             type: String,
+            /* default: "/contrafluxo-backend/img/photo-card.jpg" */
           },
 
         aboutMe: String,

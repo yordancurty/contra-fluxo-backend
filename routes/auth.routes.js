@@ -91,22 +91,15 @@ router.post("/login", async (req, res, next) => {
 
 router.get("/profile", passport.authenticate("jwt", {session: false}), async (req, res, next) => {
     
-/* try{
-    
+try{
+    console.log(req.user)
     const result = await User.findOne({_id: req.user._id})
     console.log(result);
-
-    res.status(200).json(result) */
-   
-    console.log("PROFILE GET FUNCIONAAA")
-    res.json({
-        user: req.user,
-        token: req.query.secret_token,
-    });
-
-/* } catch(err) {
-    console.error(err) */
-//}
+    res.status(200).json(result)
+    
+ } catch(err) {
+    console.error(err)
+}
 
 });
 
