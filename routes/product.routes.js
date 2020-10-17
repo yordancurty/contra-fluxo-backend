@@ -21,6 +21,21 @@ router.get("/product", async (req, res) => {
   }
 });
 
+//Read somente para o perfil do usuário:
+
+router.get("/product/:userId",
+passport.authenticate("jwt", { session: false }), async (req, res) => {
+  try {
+    req.body.user = req.params.userId;
+
+    const result = await Product.find({user: req.user._id}).populate("user");
+
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+});
+
 //Create:
 
 router.post(
