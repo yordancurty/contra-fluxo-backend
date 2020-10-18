@@ -21,9 +21,9 @@ const UserSchema = new Schema(
             required: [true],
           },
 
-        image: {
+          attachmentUrl: {
             type: String,
-            default: "",
+            /* default: "/contrafluxo-backend/img/photo-card.jpg" */
           },
 
         aboutMe: String,
@@ -32,7 +32,7 @@ const UserSchema = new Schema(
 
         instagram: String,
 
-        twiter: String,
+        twitter: String,
 
         youtube: String,
 

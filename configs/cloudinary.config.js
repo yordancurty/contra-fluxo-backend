@@ -12,8 +12,8 @@ const storage = cloudinaryStorage({
   // cloudinary: cloudinary,
   cloudinary: cloudinary,
   folder: "attachments", // The name of the folder in cloudinary
-  allowedFormats: ["jpg", "png", "mp4", "wmv", "avi"], //ADICIONAR MAIS FORMATOS
-  // params: { resource_type: 'raw' }, => this is in case you want to upload other type of files, not just images
+  allowedFormats: ["jpg", "png", "mp4", "wmv", "avi"], 
+  params: { resource_type: 'auto' },
   filename: function (req, file, cb) {
     cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
   },

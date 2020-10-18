@@ -89,12 +89,18 @@ router.post("/login", async (req, res, next) => {
 
 //Rota privada de usurário:
 
-router.get("/profile", passport.authenticate("jwt", {session: false}), (req, res, next) => {
-    console.log("PROFILE GET FUNCIONAAA")
-    res.json({
-        user: req.user,
-        token: req.query.secret_token,
-    });
+router.get("/profile", passport.authenticate("jwt", {session: false}), async (req, res, next) => {
+    
+try{
+    console.log(req.user)
+    const result = await User.findOne({_id: req.user._id})
+    console.log(result);
+    res.status(200).json(result)
+    
+ } catch(err) {
+    console.error(err)
+}
+
 });
 
 //Rota de edit:
@@ -142,6 +148,18 @@ router.delete("/profile/:id", passport.authenticate("jwt", {session: false}), as
         return res.status(500).json({msg: "Internal server error"})
     }
 });
+
+router.post("/logout", /* passport.authenticate("jwt", {session: false}), */ async (req, res) => {
+    try{
+
+        req.logout();
+    return res.status(200).json({msg: "Logout successful"});
+
+    }catch(err) {
+        console.error(err);
+    }
+    
+})
 
 
 module.exports = router;
