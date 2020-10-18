@@ -21,6 +21,22 @@ router.get("/product", async (req, res) => {
   }
 });
 
+//Details
+
+router.get("/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await Product.findOne({ _id: id });
+
+    console.log(result);
+
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+}
+);
 //Create:
 
 router.post(
