@@ -18,4 +18,4 @@ require("./configs/passport.config")(app);
 app.use("/api", productRouter);
 app.use("/api", authRouter);
 
-app.listen(process.env.PORT, () => console.log("running at port 4000"));
+app.listen(process.env.PORT, () => console.log("running at port 4001"));
