@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.655b15f8.chunk.css",
+    "main.js": "/static/js/main.2633755c.chunk.js",
+    "main.js.map": "/static/js/main.2633755c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f262d279.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f262d279.js.map",
+    "static/css/2.6414bb7b.chunk.css": "/static/css/2.6414bb7b.chunk.css",
+    "static/js/2.92e5ce24.chunk.js": "/static/js/2.92e5ce24.chunk.js",
+    "static/js/2.92e5ce24.chunk.js.map": "/static/js/2.92e5ce24.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3a1deeb5f0bee43c4195266639ac1c7b.js": "/precache-manifest.3a1deeb5f0bee43c4195266639ac1c7b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.6414bb7b.chunk.css.map": "/static/css/2.6414bb7b.chunk.css.map",
+    "static/css/main.655b15f8.chunk.css.map": "/static/css/main.655b15f8.chunk.css.map",
+    "static/js/2.92e5ce24.chunk.js.LICENSE.txt": "/static/js/2.92e5ce24.chunk.js.LICENSE.txt",
+    "static/media/capa-de-livro.jpg": "/static/media/capa-de-livro.dd42df16.jpg",
+    "static/media/ceramica.jpg": "/static/media/ceramica.9349a108.jpg",
+    "static/media/logo.png": "/static/media/logo.e0ec973b.png",
+    "static/media/photo-card.jpg": "/static/media/photo-card.ba5ba6ea.jpg",
+    "static/media/photo-chamada.jpg": "/static/media/photo-chamada.933baac7.jpg",
+    "static/media/photo-manifesto.jpg": "/static/media/photo-manifesto.6f9efa56.jpg",
+    "static/media/tela.jpg": "/static/media/tela.c6bd543a.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f262d279.js",
+    "static/css/2.6414bb7b.chunk.css",
+    "static/js/2.92e5ce24.chunk.js",
+    "static/css/main.655b15f8.chunk.css",
+    "static/js/main.2633755c.chunk.js"
+  ]
+}
