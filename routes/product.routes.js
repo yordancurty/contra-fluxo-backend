@@ -9,7 +9,7 @@ const User = require("../models/User.model");
 
 //Rotas dos produtos:
 
-//Read:
+//Read: 
 
 router.get("/product", async (req, res) => {
   try {
@@ -25,11 +25,12 @@ router.get("/product", async (req, res) => {
 
 router.get("/product/:id", async (req, res) => {
   try {
+    //console.log("conectou a  /product/:id ")
     const { id } = req.params;
 
     const result = await Product.findOne({ _id: id });
 
-    console.log(result);
+    //console.log(result);
 
     return res.status(200).json(result);
   } catch (err) {
@@ -37,6 +38,26 @@ router.get("/product/:id", async (req, res) => {
   }
 }
 );
+
+//Read somente para o perfil do usuário:
+
+router.get("/product/user/:userId",
+passport.authenticate("jwt", { session: false }), async (req, res) => {
+  try {
+    //console.log("conectou a  /product/user/:id ")
+    
+    req.body.user = req.params.userId;
+
+    const result = await Product.find({user: req.user._id}).populate("user");
+
+    console.log("prod READ result = ", result);
+
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+});
+
 //Create:
 
 router.post(
@@ -47,8 +68,9 @@ router.post(
       req.body.user = req.params.userId;
 
       const resultProduct = await Product.create(req.body);
-      
-console.log(req.body)
+
+      console.log("prod POST result = ", req.body)
+
       return res.status(201).json({ created: { resultProduct} });
     } catch (err) {
       console.log(err);

@@ -37,7 +37,7 @@ router.post("/signup", async (req, res) =>{
         const salt = await bcrypt.genSalt(saltRounds);
         const hashedPassword = await bcrypt.hash(password, salt)
 
-        console.log("Hashed password -->", hashedPassword);
+        //console.log("Hashed password -->", hashedPassword);
 
         const result = await User.create({
             name,
@@ -46,7 +46,7 @@ router.post("/signup", async (req, res) =>{
         });
 
         res.status(201).json({user: result});
-        console.log(result);
+        //console.log(result);
 
     }catch(err){
         console.error(err);
@@ -92,9 +92,9 @@ router.post("/login", async (req, res, next) => {
 router.get("/profile", passport.authenticate("jwt", {session: false}), async (req, res, next) => {
     
 try{
-    console.log(req.user)
+    //console.log(req.user)
     const result = await User.findOne({_id: req.user._id})
-    console.log(result);
+    //console.log(result);
     res.status(200).json(result)
     
  } catch(err) {
@@ -112,7 +112,7 @@ router.patch("/profile/:id", passport.authenticate("jwt", {session: false}), asy
     
     const result = await User.findOneAndUpdate({_id: id}, req.body, {new: true});
 
-    console.log(result);
+    //console.log(result);
 
     return res.status(200).json(result);
 
@@ -140,7 +140,7 @@ router.delete("/profile/:id", passport.authenticate("jwt", {session: false}), as
 
     const result = await User.deleteOne({_id: id});
 
-    console.log(result);
+    //console.log(result);
 
     return res.status(200).json({});
 
