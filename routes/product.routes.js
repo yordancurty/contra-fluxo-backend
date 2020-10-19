@@ -25,12 +25,12 @@ router.get("/product", async (req, res) => {
 
 router.get("/product/:id", async (req, res) => {
   try {
-    console.log("conectou a  /product/:id ")
+    //console.log("conectou a  /product/:id ")
     const { id } = req.params;
 
     const result = await Product.findOne({ _id: id });
 
-    console.log(result);
+    //console.log(result);
 
     return res.status(200).json(result);
   } catch (err) {
@@ -44,7 +44,7 @@ router.get("/product/:id", async (req, res) => {
 router.get("/product/user/:userId",
 passport.authenticate("jwt", { session: false }), async (req, res) => {
   try {
-    console.log("conectou a  /product/user/:id ")
+    //console.log("conectou a  /product/user/:id ")
     
     req.body.user = req.params.userId;
 
